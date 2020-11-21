@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>J-Query practice</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .dp-inb {
+        display: inline-block ;
+    }
+    
+    .logo{
+      position: fixed;
+      top: 75%;
+      right: 3%;
+      width: 300px;
+    }
+
+    h1{
+
+      width: 600px;
+      padding: 10px;
+    }
+
+    p{
+      padding: 5px;
+    }
+
+    .loading{
+      position: absolute;
+      margin: auto;
+      top: 25%;
+      left: 35%;
+    }
+    
+    .function{
+      padding: 1px;
+    }
+
+    .box-1{
+      padding: 10px;
+      width: 300px;
+    }
+
+    .box-2 {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid grey;
+    }
+
+    .red{
+      background-color: red;
+      text-align: center;
+    }
+
+    button{
+      box-shadow: 1px 1px 2px grey;
+      height: 30px;
+      width: 80px;
+      margin-right: 5px;
+    }
+
+    #reset{
+      background-color: grey;
+      color: whitesmoke;
+      font-weight: bolder;
+    }
+    .bottom{
+      text-align: center;
+      padding: 10px;
+      margin: 15px 0 0;
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="function">
+      <div>
+        <button id="ac">addClass</button>
+      </div>
+      <div>
+        <h1>Add Class</h1>
+        <p>If you click the buttonyou will add a class <span>Red</span> to the paragraph</p>
+      </div>
+    </div>
+    <div class="function">
+      <div>
+        <button id="su">slideUp</button>
+        <button id="sd">slideDown</button>
+        <button id="st">slideToggle</button>
+      </div>
+      <div>
+        <h1>Slide</h1>
+        <p>slideUp function will move the object up and it will dissapear it </p>
+        <p>slideDown function will move the object down and it will dissapear it </p>
+        <p>slideToggle can hide and show the object with an slide movement</p>
+      </div>
+    </div>
+    <div class="function">
+      <div>
+        <button id="a">append</button>
+      </div>
+      <div>
+        <h1>Append</h1>
+        <p>Append insert something into an existing tag</p>
+      </div>
+    </div>
+    <div class="function">
+      <div>
+        <button id="fi">fadeIn</button>
+        <button id="fo">fadeOut</button>
+      </div>
+      <div>
+        <h1>Fade</h1>
+        <p>This paragraph was faded into the DOM</p>
+        <p>This paragraph can be fade out from the DOM</p>
+      </div>
+    </div>
+    <div class="function">
+      <div>
+      <button id="h">hide</button>
+      <button id="s">show</button>
+      <button id="t">toggle</button>
+      </div>
+      <div>
+        <h1>Hide / Show / Toggle</h1>
+        <p>This paragraph can be hided</p>
+        <p>This paragraph has been shown with the .show() jQuery function</p>
+        <p>This paragraph can be shown or hided with the toggle function</p>
+      </div>
+    </div>
+    <div class="function">
+      <div>
+      <button id="at">after</button>
+      <button id="bf">before</button>
+      </div>
+      <div>
+        <h1>After / Before</h1>
+        <p>This is the original paragraph</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <button id="reset">RESET</button>
+    </div>
+  </div>
+  <img src="JQuery-Logo.png" alt="jQuery Logo" class="logo">
+  <script>
+    $("#reset").click(function(){
+      $(".container").html("<img></img>")
+      $("img:nth-child(2)").addClass("loading")
+      $("img:nth-child(2)").removeClass("logo")
+      $(".loading").attr("src","ajax-loader.gif").animate()
+      $(".container").append("<p>If you wanna learn more go ... <a>jQuery Learning Center</a></p>")
+      $("p").hide()
+      $("a").attr("href","https://learn.jquery.com/")
+      $("a").attr("target","_blank")
+      $("p").fadeIn(1000, function a(){
+        setTimeout(function(){
+          location.reload()
+        }, 3500);
+      })
+    })
+    $("h1,.bottom").css("background-color","#4993c5")
+    $(".function div,button").addClass("dp-inb")
+    $(".function div:first-child").addClass("box-1")
+    $(".function div:last-child").addClass("box-2")
+    $("#ac").click(function(){
+      $(".container .function:nth-child(1) .box-2 p").addClass("red")
+      $("span").css("color","white")
+    })
+    $("#su").click(function(){
+      $(".container .function:nth-child(2) .box-2 p:nth-child(2)").slideUp()
+    })
+    $(".container .function:nth-child(2) .box-2 p:nth-child(3)").hide()
+    $("#sd").click(function(){
+      $(".container .function:nth-child(2) .box-2 p:nth-child(3)").slideDown()
+    })
+    $("#st").click(function(){
+      $(".container .function:nth-child(2) .box-2 p:nth-child(4)").slideToggle()
+    })
+    $("#a").click(function(){
+      $(".container .function:nth-child(3) .box-2 p").append("<span> this is an span appended</span>")
+      $(".container .function:nth-child(3) .box-2 p span").css("color","red")
+    })
+    $(".container .function:nth-child(4) .box-2 p:nth-child(2)").hide()
+    $("#fi").click(function(){
+      $(".container .function:nth-child(4) .box-2 p:nth-child(2)").fadeIn("slow")
+    })
+    $("#fo").click(function(){
+      $(".container .function:nth-child(4) .box-2 p:nth-child(3)").fadeOut("slow")
+    })
+    $("#h").click(function(){
+      $(".container .function:nth-child(5) .box-2 p:nth-child(2)").hide()
+    })
+    $(".container .function:nth-child(5) .box-2 p:nth-child(3)").hide()
+    $("#s").click(function(){
+      $(".container .function:nth-child(5) .box-2 p:nth-child(3)").show()
+    })
+    $("#t").click(function(){
+      $(".container .function:nth-child(5) .box-2 p:nth-child(4)").toggle()
+    })
+    $("#bf").click(function(){
+      $(".container .function:nth-child(6) .box-2 p:nth-child(2)").before("<p>This paragraph was added before the original one</p>")
+    })
+    $("#at").click(function(){
+      $(".container .function:nth-child(6) .box-2 p:nth-child(2)").after("<p>This paragraph was added after the original one</p>")
+    })
+
+  </script>
+</body>
+</html>
